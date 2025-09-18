@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: auth_token
+
+  datasource:
+      url: ${DATABASE_URL}
+      username: ${DATABASE_USERNAME}
+      password: ${DATABASE_PASSWORD}
+      driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+
+  flyway:
+    enabled: true
+
+#springdoc:
+#  api-docs:
+#    path: /api/api-docs
+#  swagger-ui:
+#    path: /swagger/index.html
+
+auth_token:
+  security:
+    secret: "secret-key"
