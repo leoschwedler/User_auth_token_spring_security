@@ -41,12 +41,6 @@ Java 21
 
 Lombok
 
-##🔚 Endpoints Principais
-Método	Endpoint	Descrição
-POST	/users/register	Registrar novo usuário
-POST	/users/login	Login e geração de JWT
-Teste todos os endpoints via Swagger: http://localhost:8080/swagger-ui.html
-
 ## 🚀 Como Rodar o Projeto
 Subir o MySQL via Docker Compose:
 
