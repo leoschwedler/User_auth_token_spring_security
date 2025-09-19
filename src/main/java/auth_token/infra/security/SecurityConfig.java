@@ -12,13 +12,14 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
-//@RequiredArgsConstructor
+@RequiredArgsConstructor
 public class SecurityConfig {
 
-//    private final SecurityFilter securityFilter;
+    private final SecurityFilter securityFilter;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -31,14 +32,15 @@ public class SecurityConfig {
 
                 // Configura as rotas públicas e privadas
                 .authorizeHttpRequests(authorize -> authorize
+                                .requestMatchers(HttpMethod.GET, "/api/api-docs/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/swagger/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll() // cadastro liberado
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()    // login liberado
                         .anyRequest().authenticated() // todo o resto precisa de autenticação
                 )
 
-                // Adiciona nosso filtro JWT antes do filtro padrão do Spring
-//                .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
-
+                 // Adiciona nosso filtro JWT antes do filtro padrão do Spring
+                .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
 

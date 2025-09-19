@@ -27,3 +27,9 @@ spring:
 auth_token:
   security:
     secret: "secret-key"
+
+springdoc:
+  api-docs:
+    path: /api/api-docs
+  swagger-ui:
+    path: /swagger/index.html
